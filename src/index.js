@@ -1,7 +1,5 @@
 'use strict';
 
-require('dotenv').config();
-
 const Schema = require('./core/graphql/schema'),
       { SetUpDBSchema } = require('./core/lib/faunadb'),
       SetupDB = SetUpDBSchema,
@@ -11,7 +9,7 @@ const Schema = require('./core/graphql/schema'),
 
 const app = express();
 
-app.use("/graphql", graphqlHTTP({
+app.use("/.netlify/functions/server/graphql", graphqlHTTP({
     schema: Schema
 }));
 
