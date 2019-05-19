@@ -4,7 +4,8 @@
   "description": "discord-emoji-manager Server Side",
   "main": "src/index.js",
   "scripts": {
-    "deploy": "yarn global add pm2 -g && pm2 start src/"
+    "build": "netlify-lambda build src",
+    "start": "node server.js"
   },
   "repository": "https://github.com/yeno-team/discord-emoji-manger-server.git",
   "author": "Yeno",
@@ -16,6 +17,7 @@
     "express-graphql": "^0.8.0",
     "faunadb": "^2.6.1",
     "graphql": "^14.3.0",
-    "graphql-custom-types": "^1.5.0"
+    "graphql-custom-types": "^1.5.0",
+    "serverless-http": "^2.0.2"
   }
 }

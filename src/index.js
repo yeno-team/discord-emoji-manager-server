@@ -1,4 +1,6 @@
-require('dotenv').config()
+'use strict';
+
+require('dotenv').config();
 
 const Schema = require('./core/graphql/schema'),
       { SetUpDBSchema } = require('./core/lib/faunadb'),

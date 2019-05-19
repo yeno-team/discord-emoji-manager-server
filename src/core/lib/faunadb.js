@@ -1,3 +1,5 @@
+'use strict';
+
 const faunadb = require('faunadb'),
       q = faunadb.query;
 
@@ -5,7 +7,7 @@ const faunaClient = new faunadb.Client({
   secret: process.env.FAUNADB_SECRET
 });
 
-module.exports.SetUpDBSchema = function setupDBSchema() {
+module.exports.SetUpDBSchema = function () {
 
     return faunaClient.query(
         q.Do(
@@ -64,10 +66,10 @@ module.exports.SetUpDBSchema = function setupDBSchema() {
                 )
             )
 
-        }).catch((e) => console.log)
+        }).catch((e) => console.log);
 }
 
-module.exports.getEmoji = function getEmoji(id) {
+module.exports.getEmoji = function (id) {
     return faunaClient.query(
         q.Select(
             "data",
@@ -95,7 +97,7 @@ module.exports.getEmojis = function getEmojis(creator) {
 }
 
 
-module.exports.createEmoji = function createEmoji(emoji) {
+module.exports.createEmoji = function (emoji) {
   return faunaClient.query(
     q.Select(
         "data",
@@ -105,7 +107,7 @@ module.exports.createEmoji = function createEmoji(emoji) {
 }
 
 
-module.exports.getPack = function getPack(id) {
+module.exports.getPack = function (id) {
     return faunaClient.query(
         q.Select(
             "data",
@@ -113,7 +115,7 @@ module.exports.getPack = function getPack(id) {
     );
 }
 
-module.exports.createPack = function createPack(pack) {
+module.exports.createPack = function (pack) {
   return faunaClient.query(
     q.Select(
         "data",
@@ -122,7 +124,7 @@ module.exports.createPack = function createPack(pack) {
   );
 }
 
-module.exports.getPacks = function getPacks(creator) {
+module.exports.getPacks = function (creator) {
     if (creator) {
         return faunaClient.query(
             q.Select(
