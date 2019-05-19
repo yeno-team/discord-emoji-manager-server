@@ -4,7 +4,7 @@
   "description": "discord-emoji-manager Server Side",
   "main": "src/index.js",
   "scripts": {
-    "deploy": "pm2 start src/"
+    "deploy": "npm install pm2 -g && pm2 start src/"
   },
   "repository": "https://github.com/yeno-team/discord-emoji-manger-server.git",
   "author": "Yeno",
