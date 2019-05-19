@@ -18,6 +18,8 @@
     "faunadb": "^2.6.1",
     "graphql": "^14.3.0",
     "graphql-custom-types": "^1.5.0",
-    "serverless-http": "^2.0.2"
+    "serverless-http": "^2.0.2",
+    "netlify-lambda": "^0.4.0"
   }
+
 }
