@@ -2,7 +2,7 @@
   "name": "discord-emoji-manager-server",
   "version": "1.0.0",
   "description": "discord-emoji-manager Server Side",
-  "main": "src/index.js",
+  "main": "functions/index.js",
   "scripts": {
     "build": "netlify-lambda build src",
     "start": "node server.js"
@@ -18,8 +18,7 @@
     "faunadb": "^2.6.1",
     "graphql": "^14.3.0",
     "graphql-custom-types": "^1.5.0",
-    "serverless-http": "^2.0.2",
-    "netlify-lambda": "^0.4.0"
+    "netlify-lambda": "^1.4.11",
+    "serverless-http": "^2.0.2"
   }
-
 }
