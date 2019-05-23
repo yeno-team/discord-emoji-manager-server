@@ -1,23 +1,23 @@
-const {
+import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLList,
   GraphQLString,
   GraphQLNonNull
-} = require('graphql');
+} from 'graphql';
 
-const {
+import {
   GraphQLLimitedString
-} = require('graphql-custom-types');
+} from 'graphql-custom-types';
 
-const {
+import {
     getEmoji,
     getEmojis,
     createEmojis,
     getPack,
     createpack,
     getPacks
- } = require('../lib/faunadb');
+ } from '../lib/faunadb';
 
 
  const Emoji = new GraphQLObjectType({
@@ -145,4 +145,4 @@ const Schema = new GraphQLSchema({
     mutation: Mutation
 });
 
-module.exports = Schema;
+export default Schema;

@@ -1,7 +1,7 @@
-const graphql = require("./graphql"),
-      test = require("./test");
+import graphql from './graphql';
+import text from './test';
 
-module.exports = {
+export default {
     graphql,
     test
 }

@@ -1,9 +1,10 @@
 'use strict';
 
-const { graphql } = require('graphql');
-       Schema = require('../graphql/schema');
 
-module.exports.runGraphQL = function(event, cb) {
+import graphql from 'graphql';
+import Schema from '../graphql/schema';
+
+export function runGraphQL(event, cb) {
 
   let query = event.query;
 

@@ -22,5 +22,10 @@
     "netlify-lambda": "^1.4.11",
     "serverless-http": "^2.0.2",
     "webpack": "^4.32.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4"
   }
 }

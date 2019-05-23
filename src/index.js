@@ -1,9 +1,9 @@
 'use strict';
 
-const { SetUpDBSchema } = require('./core/lib/faunadb'),
-      express = require('express'),
-      serverless = require('serverless-http'),
-      routes = require('./core/routes');
+import { SetUpDBSchema } from './core/lib/faunadb';
+import express from 'express';
+import serverless from 'serverless-http';
+import routes from './core/routes';
 
 const app = express();
 
