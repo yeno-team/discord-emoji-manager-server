@@ -4,6 +4,7 @@
   "description": "discord-emoji-manager Server Side",
   "main": "functions/index.js",
   "scripts": {
+    "serve": "netlify-lambda serve src",
     "build": "netlify-lambda build src",
     "start": "node server.js"
   },
@@ -19,6 +20,7 @@
     "graphql": "^14.3.0",
     "graphql-custom-types": "^1.5.0",
     "netlify-lambda": "^1.4.11",
-    "serverless-http": "^2.0.2"
+    "serverless-http": "^2.0.2",
+    "webpack": "^4.32.2"
   }
 }

@@ -1,17 +1,15 @@
 'use strict';
 
-const Schema = require('./core/graphql/schema'),
-      { SetUpDBSchema } = require('./core/lib/faunadb'),
-      SetupDB = SetUpDBSchema,
+const { SetUpDBSchema } = require('./core/lib/faunadb'),
       express = require('express'),
-      graphqlHTTP = require('express-graphql'),
-      serverless = require('serverless-http');
+      serverless = require('serverless-http'),
+      routes = require('./core/routes');
 
 const app = express();
 
-app.use("/.netlify/functions/server/graphql", graphqlHTTP({
-    schema: Schema
-}));
+for(let route in routes) {
+    app.use("/.netlify/functions/index/" + route, routes[route]);
+}
 
 module.exports = app;
 module.exports.handler = serverless(app);
