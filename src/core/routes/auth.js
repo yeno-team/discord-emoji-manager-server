@@ -14,6 +14,11 @@ router.get("/callback",  passport.authenticate('discord', { failureRedirect: "/l
     res.redirect('/dashboard');
 });
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
 router.get("/me", checkAuth, (req, res) => {
     res.json(req.user);
 });
