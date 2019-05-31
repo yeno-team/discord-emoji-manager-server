@@ -10,13 +10,8 @@ const scopes = ['identify', 'guilds'];
 
 router.get("/", passport.authenticate('discord', { scope: scopes }), (req, res) => {});
 
-router.get("/callback",  passport.authenticate('discord', { failureRedirect: "./error" }), (req, res) => {
+router.get("/callback",  passport.authenticate('discord', { failureRedirect: "/login" }), (req, res) => {
     res.redirect('/dashboard');
-});
-
-router.get("/error", (req, res) => {
-    res.status(500);
-    res.redirect('/login?error=1');
 });
 
 router.get("/me", checkAuth, (req, res) => {
