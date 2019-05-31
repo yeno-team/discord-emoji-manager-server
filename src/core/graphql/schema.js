@@ -10,24 +10,43 @@ import {
   GraphQLLimitedString
 } from 'graphql-custom-types';
 
+import { 
+    GraphQLUpload 
+} from 'graphql-upload';
+
 import {
     getEmoji,
     getEmojis,
     createEmojis,
     getPack,
     createpack,
-    getPacks
+    getPacks,
+    getUsers
  } from '../lib/faunadb';
 
+ import { cloudinary as v2 } from 'cloudinary';
+
+const User = new GraphQLObjectType({
+    name: "User",
+    description: "A User",
+    fields: {
+        id: {
+            type: GraphQLString
+        },
+        username: {
+            type: GraphQLString
+        }
+    }
+});
 
  const Emoji = new GraphQLObjectType({
      name: "Emoji",
-     description: "An Emoji",
+     description: "A Emoji",
      fields: {
          id: {
              type: GraphQLString
          },
-         base64: {
+         image_url: {
              type: GraphQLString
          },
          category: {
@@ -84,7 +103,11 @@ import {
             },
             resolve: (source, {category}) => getPacks(category)
          },
-
+         users: {
+             type: GraphQLList(User),
+             description: "List of Users",
+             resolve: (source, {category}) => getUsers()
+         }
      }
  });
 
@@ -99,9 +122,9 @@ const Mutation = new GraphQLObjectType({
                     type: new GraphQLNonNull(GraphQLString),
                     description: 'The ID of the Emoji'
                 },
-                base64: {
-                    type: new GraphQLNonNull(GraphQLString),
-                    description: 'The image in raw base64'
+                image: {
+                    type: new GraphQLNonNull(GraphQLUpload),
+                    description: 'The image in of the emoji'
                 },
                 category: {
                     type: new GraphQLNonNull(GraphQLString),
@@ -116,7 +139,21 @@ const Mutation = new GraphQLObjectType({
                     descrpition: 'The discord id of the creator of the Emoji'
                 }
             },
-            resolve: (source, args) => createEmoji(args)
+            resolve: async (source, args) => {
+                let emojiArgs = {
+                    id, category, packId, creator
+                };
+
+                const { filename, mimetype, createReadStream } = await image;
+                const stream = createReadStream();
+
+                stream.pipe(cloudinary.uploader.upload_stream({tags: 'emoji'}, (err, image) => {
+                    if (err) throw new Error("Could not upload emoji image!");
+
+                    emojiArgs.image_url = image.url;
+                    return createEmoji(emojiArgs);
+                }));
+            }
         },
         createPack: {
             type: Pack,

@@ -4,7 +4,7 @@
   "description": "discord-emoji-manager Server Side",
   "main": "functions/index.js",
   "scripts": {
-    "serve": "netlify-lambda serve src",
+    "serve": "netlify-lambda serve -c src/config/webpack.functions.js src",
     "build": "netlify-lambda build -c src/config/webpack.functions.js src",
     "start": "node server.js"
   },
@@ -13,18 +13,32 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.14.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.0",
     "express-graphql": "^0.8.0",
+    "express-session": "^1.16.1",
     "faunadb": "^2.6.1",
     "graphql": "^14.3.0",
     "graphql-custom-types": "^1.5.0",
+    "graphql-upload": "^8.0.6",
     "netlify-lambda": "^1.4.11",
+    "passport": "^0.4.0",
+    "passport-discord": "^0.1.3",
+    "passport-oauth2-refresh": "^1.1.0",
+    "regenerator-runtime": "^0.13.2",
     "serverless-http": "^2.0.2",
     "webpack": "^4.32.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4"
   }

@@ -1,6 +1,6 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
 
-export default {
+module.exports = {
   mode: "development",
   plugins: [
     new webpack.DefinePlugin({ "global.GENTLY": false })

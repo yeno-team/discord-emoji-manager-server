@@ -1,7 +1,9 @@
 import graphql from './graphql';
-import text from './test';
+import test from './test';
+import auth from './auth';
 
 export default {
     graphql,
-    test
+    test,
+    auth
 }
