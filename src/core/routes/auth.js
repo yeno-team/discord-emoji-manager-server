@@ -1,5 +1,8 @@
 'use strict';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import passport from 'passport';
 import { graphqlUploadExpress } from 'graphql-upload';
@@ -7,16 +10,17 @@ import { graphqlUploadExpress } from 'graphql-upload';
 const router = express.Router();
 
 const scopes = ['identify', 'guilds'];
+const redirectBase = process.env.REDIRECT_BASE;
 
 router.get("/", passport.authenticate('discord', { scope: scopes }), (req, res) => {});
 
-router.get("/callback",  passport.authenticate('discord', { failureRedirect: "/login" }), (req, res) => {
-    res.redirect('/dashboard');
+router.get("/callback",  passport.authenticate('discord', { failureRedirect: redirectBase + "/login?error=1" }), (req, res) => {
+    res.redirect(redirectBase + 'dashboard');
 });
 
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect(redirectBase + 'login');
 });
 
 router.get("/me", checkAuth, (req, res) => {
